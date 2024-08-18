@@ -38,6 +38,8 @@ func main() {
 		"process", config.Process != nil,
 		"AppArmor", config.Process.ApparmorProfile)
 
+	config.Process.ApparmorProfile = "kubearmor-aa-profile"
+	
 	if err := json.NewEncoder(os.Stdout).Encode(config); err != nil {
 		slog.Error("Error encoding config JSON", "error", err)
 		os.Exit(1)
